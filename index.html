@@ -1,64 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Cotización del Dólar Blue</title>
-  <style>
-    body {
-      background-color: #121212;
-      color: #00ff00; /* Verde para texto normal */
-      font-family: monospace;
-      padding: 2em;
-      max-width: 800px;
-      margin: 0 auto;
-    }
 
-    #terminal {
-      background: black;
-      padding: 1em;
-      border-radius: 8px;
-      white-space: pre-wrap;
-      min-height: 200px;
-      border: 1px solid #333;
-      margin-bottom: 1em;
-    }
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>APP DOLAR blUE</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    .cargando {
-      color: #ffff00; /* Amarillo para el texto de carga */
-      font-style: italic;
-    }
+        <style>
+            body {
+                font-family: 'Ubuntu Mono', sans-serif;
+                font-size: 1.2rem;
+            }
+        </style>
+      <script type="module" crossorigin src="/assets/index-DeOwbu3Z.js"></script>
+    </head>
 
-    .error {
-      color: #ff5555; /* Rojo para errores */
-    }
+    <body style="margin: 0; padding: 0; height: 100vh; width: 100vw;">
+        <es-terminal tema="oscuro"></es-terminal>
+    </body>
 
-    .exito {
-      color: #55ff55; /* Verde más claro para éxito */
-    }
-
-    #input {
-      background: #121212;
-      color: #00ff00;
-      border: 1px solid #00ff00;
-      padding: 8px;
-      width: 100%;
-      font-family: monospace;
-      font-size: 1em;
-      box-sizing: border-box;
-    }
-
-    #input:focus {
-      outline: none;
-      border-color: #00ff00;
-      box-shadow: 0 0 5px #00ff00;
-    }
-  </style>
-</head>
-<body>
-  <h1>💵 Dólar Blue App</h1>
-  <div id="terminal"><span class="cargando">Cargando terminal virtual...</span></div>
-  <input type="password" id="input" placeholder="Ingresá la palabra secreta y presiona Enter" autofocus />
-
-  <script type="module" src="/index.js"></script>
-</body>
 </html>
