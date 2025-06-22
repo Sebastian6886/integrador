@@ -37,5 +37,4 @@ async function mostrarCotizacion() {
   escribir("📅 Fecha: " + dolarBlue.fecha);
 }
 
-// Hacer accesible la función desde el HTML
-window.procesarEntrada = procesarEntrada;
+
