@@ -1,30 +1,37 @@
-import { obtenerJson } from "https://desarrollo-aplicaciones.vercel.app/2024/code/obtener-json.js";
-import { validarSecreto } from "https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.js";
+import {Terminal} from '@es-js/terminal';
+import {obtenerJson} from 'https://desarrollo-aplicaciones.vercel.app/2024/code/obtener-json.js';
+import {validarSecreto} from 'https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.js';
 
-const terminal = document.getElementById("terminal");
-const input = document.getElementById("input");
-
-const dni = "34877662";
-
-function escribir(mensaje) {
-  terminal.textContent += mensaje + "\n";
+async function inicio() {
+    Terminal.escribir('Hola! Ingresa la palabra secreta:');
+    
+    var secreto = await Terminal.leer();
+    
+    var dni = '34877662';
+    
+    if (await validarSecreto(dni, secreto)) {
+        await mostrarCotizacion();
+    } else {
+        Terminal.escribir('Palabra secreta inválida');
+    }
+    
+    Terminal.escribir('Presiona ENTER para volver a ingresar');
+    
+    await Terminal.leerEnter();
+    
+    Terminal.limpiar();
+    
+    inicio();
 }
 
-async function procesarEntrada() {
-  const secreto = input.value.trim();
-  input.value = "";
-
-  escribir("🔐 Verificando palabra secreta...");
-
-  if (await validarSecreto(dni, secreto)) {
-    escribir("✅ Palabra Secreta válida");
-    await mostrarCotizacion();
-  } else {
-    escribir("❌ Palabra Secreta inválida");
-  }
-
-  escribir("↩️ Podés probar otra vez si querés.");
+async function mostrarCotizacion() {
+    const dolarBlue = await obtenerJson('https://dolarapi.com/v1/dolares/blue');
+    
+    Terminal.escribir(dolarBlue);
 }
+
+inicio();
+
 
 async function mostrarCotizacion() {
   const dolarBlue = await obtenerJson("https://dolarapi.com/v1/dolares/blue");
