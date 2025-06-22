@@ -1,47 +1,73 @@
-import {Terminal} from '@es-js/terminal';
-import {obtenerJson} from 'https://desarrollo-aplicaciones.vercel.app/2024/code/obtener-json.js';
-import {validarSecreto} from 'https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.js';
+// Importación del módulo de validación
+import { validarSecreto } from 'https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.js';
 
-async function inicio() {
-    Terminal.escribir('Hola! Ingresa la palabra secreta:');
+// Configuración inicial
+const dni = '34877662'; // Tu DNI
+const terminal = document.getElementById('terminal');
+const input = document.getElementById('input');
+
+// Función para escribir en la terminal virtual
+function escribirTerminal(texto) {
+  terminal.innerHTML += '\n' + texto;
+  terminal.scrollTop = terminal.scrollHeight;
+}
+
+// Función principal para procesar la entrada
+async function procesarEntrada() {
+  const secreto = input.value.trim();
+  
+  if (!secreto) {
+    escribirTerminal('Error: Debes ingresar una palabra secreta');
+    input.value = '';
+    return;
+  }
+
+  escribirTerminal('Validando...');
+  input.disabled = true;
+  
+  try {
+    const esValido = await validarSecreto(dni, secreto);
     
-    var secreto = await Terminal.leer();
-    
-    var dni = '34877662';
-    
-    if (await validarSecreto(dni, secreto)) {
-        await mostrarCotizacion();
+    if (esValido) {
+      escribirTerminal('Acceso concedido. Obteniendo cotización...');
+      await mostrarCotizacion();
     } else {
-        Terminal.escribir('Palabra secreta inválida');
+      escribirTerminal('Palabra secreta incorrecta');
     }
-    
-    Terminal.escribir('Presiona ENTER para volver a ingresar');
-    
-    await Terminal.leerEnter();
-    
-    Terminal.limpiar();
-    
-    inicio();
+  } catch (error) {
+    console.error('Error:', error);
+    escribirTerminal('Error al conectar con el servidor de validación');
+  } finally {
+    input.value = '';
+    input.disabled = false;
+    input.focus();
+  }
 }
 
+// Función para mostrar la cotización del dólar blue
 async function mostrarCotizacion() {
-    const dolarBlue = await obtenerJson('https://dolarapi.com/v1/dolares/blue');
+  try {
+    const response = await fetch('https://dolarapi.com/v1/dolares/blue');
+    const dolarBlue = await response.json();
     
-    Terminal.escribir(dolarBlue);
+    escribirTerminal(`\n=== COTIZACIÓN DÓLAR BLUE ===`);
+    escribirTerminal(`Compra: $${dolarBlue.compra}`);
+    escribirTerminal(`Venta: $${dolarBlue.venta}`);
+    escribirTerminal(`Promedio: $${((dolarBlue.compra + dolarBlue.venta) / 2).toFixed(2)}`);
+    escribirTerminal(`Actualizado: ${new Date(dolarBlue.fechaActualizacion).toLocaleString()}`);
+    escribirTerminal('\nActualiza la página (F5) para consultar nuevamente');
+  } catch (error) {
+    console.error('Error al obtener cotización:', error);
+    escribirTerminal('Error al obtener la cotización. Intenta nuevamente más tarde.');
+  }
 }
 
-inicio();
+// Event listener para la tecla Enter
+input.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    procesarEntrada();
+  }
+});
 
-
-async function mostrarCotizacion() {
-  const dolarBlue = await obtenerJson("https://dolarapi.com/v1/dolares/blue");
-
-  escribir("💸 Cotización del Dólar Blue:");
-  escribir("🟢 Venta: $" + dolarBlue.venta);
-  escribir("🔵 Compra: $" + dolarBlue.compra);
-  const promedio = ((dolarBlue.venta + dolarBlue.compra) / 2).toFixed(2);
-  escribir("📊 Promedio: $" + promedio);
-  escribir("📅 Fecha: " + dolarBlue.fecha);
-}
-
-
+// Mensaje inicial
+escribirTerminal('Listo para validar. Ingrese su palabra secreta:');
