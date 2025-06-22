@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,6 +9,8 @@
       color: #00ff00;
       font-family: monospace;
       padding: 2em;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     #terminal {
@@ -17,22 +18,45 @@
       padding: 1em;
       border-radius: 8px;
       white-space: pre-wrap;
+      min-height: 200px;
+      border: 1px solid #333;
     }
 
-    input, button {
+    input {
+      background: #121212;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      padding: 8px;
+      width: 300px;
       margin-top: 1em;
       font-family: monospace;
       font-size: 1em;
+    }
+
+    button {
+      background: #00aa00;
+      color: black;
+      border: none;
+      padding: 8px 16px;
+      margin-left: 8px;
+      font-family: monospace;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #00ff00;
     }
   </style>
 </head>
 <body>
   <h1>💵 Dólar Blue App</h1>
-  <pre id="terminal">Cargando terminal virtual...
-</pre>
-  <input type="text" id="input" placeholder="Ingresá la palabra secreta" />
-  <button onclick="procesarEntrada()">Enviar</button>
+  <div id="terminal">Bienvenido al sistema de cotización del Dólar Blue
+Ingrese su palabra secreta:</div>
+  <input type="password" id="input" placeholder="Ingresá la palabra secreta" autofocus />
+  <button id="submitBtn">Enviar</button>
 
-  <script type="module" src="index.js"></script>
+  <script type="module" src="/index.js"></script>
 </body>
 </html>
