@@ -2,38 +2,46 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Dólar Blue App</title>
+  <title>Consola Dólar Blue</title>
   <style>
     body {
-      background-color: #121212;
-      color: #00ff00;
+      background-color: #000;
+      color: #0f0;
       font-family: monospace;
+      margin: 0;
       padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
+      height: 100vh;
+      overflow: hidden;
     }
-    #terminal {
-      background: black;
-      padding: 15px;
-      border-radius: 8px;
-      min-height: 300px;
-      margin-bottom: 15px;
-      white-space: pre-wrap;
+    #console {
+      height: calc(100% - 40px);
       overflow-y: auto;
-      max-height: 400px;
+      white-space: pre-wrap;
+    }
+    #input-line {
+      display: flex;
+    }
+    #prompt {
+      margin-right: 10px;
     }
     #input {
-      background: #121212;
-      color: #00ff00;
-      border: 1px solid #00ff00;
-      padding: 10px;
-      width: 100%;
+      background: transparent;
+      border: none;
+      color: #0f0;
       font-family: monospace;
+      font-size: 1em;
+      width: 100%;
+      outline: none;
     }
   </style>
 </head>
 <body>
-  <h1>Dólar Blue App (ESJS en Vercel)</h1>
-  <div id="terminal"></div>
-  <input type="password" id="input" placeholder="Ingresa tu palabra secreta y presiona Enter" autofocus>
+  <div id="console"></div>
+  <div id="input-line">
+    <span id="prompt">></span>
+    <input type="text" id="input" autofocus>
+  </div>
+
+  <script>
+    
 
