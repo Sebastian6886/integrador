@@ -1,4 +1,3 @@
-
 import { obtenerJson } from "https://desarrollo-aplicaciones.vercel.app/2024/code/obtener-json.js";
 import { validarSecreto } from "https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.js";
 
@@ -37,3 +36,6 @@ async function mostrarCotizacion() {
   escribir("📊 Promedio: $" + promedio);
   escribir("📅 Fecha: " + dolarBlue.fecha);
 }
+
+// Hacer accesible la función desde el HTML
+window.procesarEntrada = procesarEntrada;
