@@ -20,42 +20,32 @@
       white-space: pre-wrap;
       min-height: 200px;
       border: 1px solid #333;
+      margin-bottom: 1em;
     }
 
-    input {
+    #input {
       background: #121212;
       color: #00ff00;
       border: 1px solid #00ff00;
       padding: 8px;
-      width: 300px;
-      margin-top: 1em;
+      width: 100%;
       font-family: monospace;
       font-size: 1em;
+      box-sizing: border-box;
     }
 
-    button {
-      background: #00aa00;
-      color: black;
-      border: none;
-      padding: 8px 16px;
-      margin-left: 8px;
-      font-family: monospace;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background: #00ff00;
+    #input:focus {
+      outline: none;
+      border-color: #00ff00;
+      box-shadow: 0 0 5px #00ff00;
     }
   </style>
 </head>
 <body>
   <h1>💵 Dólar Blue App</h1>
   <div id="terminal">Bienvenido al sistema de cotización del Dólar Blue
-Ingrese su palabra secreta:</div>
-  <input type="password" id="input" placeholder="Ingresá la palabra secreta" autofocus />
-  <button id="submitBtn">Enviar</button>
+Ingrese su palabra secreta y presione Enter:</div>
+  <input type="password" id="input" placeholder="Ingresá la palabra secreta y presiona Enter" autofocus />
 
   <script type="module" src="/index.js"></script>
 </body>
