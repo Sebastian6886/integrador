@@ -5,43 +5,32 @@
   <title>Consola Dólar Blue</title>
   <style>
     body {
-      background-color: #000;
-      color: #0f0;
+      background-color: #121212;
+      color: #00ff00;
       font-family: monospace;
       margin: 0;
       padding: 20px;
-      height: 100vh;
-      overflow: hidden;
     }
-    #console {
-      height: calc(100% - 40px);
+    #terminal {
+      height: 80vh;
       overflow-y: auto;
       white-space: pre-wrap;
-    }
-    #input-line {
-      display: flex;
-    }
-    #prompt {
-      margin-right: 10px;
+      border: 1px solid #333;
+      padding: 10px;
+      margin-bottom: 10px;
     }
     #input {
-      background: transparent;
-      border: none;
-      color: #0f0;
-      font-family: monospace;
-      font-size: 1em;
+      background: #121212;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      padding: 8px;
       width: 100%;
-      outline: none;
+      font-family: monospace;
     }
   </style>
 </head>
 <body>
-  <div id="console"></div>
-  <div id="input-line">
-    <span id="prompt">></span>
-    <input type="text" id="input" autofocus>
-  </div>
+  <div id="terminal"></div>
+  <input type="password" id="input" placeholder="Ingresa tu palabra secreta y presiona Enter" autofocus>
 
-  <script>
-    
-
+  <script type="module">
