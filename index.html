@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cotización del Dólar Blue</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #00ff00;
+      font-family: monospace;
+      padding: 2em;
+    }
+
+    #terminal {
+      background: black;
+      padding: 1em;
+      border-radius: 8px;
+      white-space: pre-wrap;
+    }
+
+    input, button {
+      margin-top: 1em;
+      font-family: monospace;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>💵 Dólar Blue App</h1>
+  <pre id="terminal">Cargando terminal virtual...
+</pre>
+  <input type="text" id="input" placeholder="Ingresá la palabra secreta" />
+  <button onclick="procesarEntrada()">Enviar</button>
+
+  <script type="module" src="index.js"></script>
+</body>
+</html>
