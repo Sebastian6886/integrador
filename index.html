@@ -1,26 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dólar Blue App</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>APP DOLAR blUE</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+    .container {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      overflow: hidden;
+    }
 
-        <style>
-            body {
-                font-family: 'Ubuntu Mono', sans-serif;
-                font-size: 1.2rem;
-            }
-        </style>
-      <script type="module" crossorigin src="/assets/index-DeOwbu3Z.js"></script>
-    </head>
+    .header {
+      background-color: #0056b3;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
 
-    <body style="margin: 0; padding: 0; height: 100vh; width: 100vw;">
-        <es-terminal tema="oscuro"></es-terminal>
-    </body>
+    .content {
+      padding: 20px;
+    }
 
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #0056b3;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Courier New', monospace;
+      font-size: 1em;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #003d7a;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 4px;
+      border-left: 4px solid #0056b3;
+    }
+
+    .loading {
+      color: #666;
+      font-style: italic;
+    }
+
+    .error {
+      color: #d9534f;
+    }
+
+    .success {
+      color: #5cb85c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      Precio del Dólar Blue Hoy
+    </div>
+    <div class="content">
+      <div class="input-group">
+        <label for="secret">Palabra Secreta</label>
+        <input type="password" id="secret" placeholder="Ingresa tu palabra secreta">
+      </div>
+      <button id="submit">Consultar Cotización</button>
+      
+      <div id="result" class="result">
+        Ingresa tu palabra secreta y haz clic en "Consultar Cotización"
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/index.js"></script>
+</body>
 </html>
