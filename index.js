@@ -1,4 +1,3 @@
-
 import {Terminal} from '@es-js/terminal';
 import {obtenerJson} from 'https://desarrollo-aplicaciones.vercel.app/2024/code/obtener-json.js';
 import {validarSecreto} from 'https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.js';
