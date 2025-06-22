@@ -6,9 +6,9 @@
   <style>
     body {
       background-color: #121212;
-      color: #00ff02;
+      color: #00ff00; /* Verde para texto normal */
       font-family: monospace;
-      padding: 3em;
+      padding: 2em;
       max-width: 800px;
       margin: 0 auto;
     }
@@ -23,10 +23,23 @@
       margin-bottom: 1em;
     }
 
+    .cargando {
+      color: #ffff00; /* Amarillo para el texto de carga */
+      font-style: italic;
+    }
+
+    .error {
+      color: #ff5555; /* Rojo para errores */
+    }
+
+    .exito {
+      color: #55ff55; /* Verde más claro para éxito */
+    }
+
     #input {
       background: #121212;
       color: #00ff00;
-      border: 1px solid #00ff04;
+      border: 1px solid #00ff00;
       padding: 8px;
       width: 100%;
       font-family: monospace;
@@ -43,8 +56,7 @@
 </head>
 <body>
   <h1>💵 Dólar Blue App</h1>
-  <div id="terminal">Bienvenido al sistema de cotización del Dólar Blue
-Ingrese su palabra secreta y presione Enter:</div>
+  <div id="terminal"><span class="cargando">Cargando terminal virtual...</span></div>
   <input type="password" id="input" placeholder="Ingresá la palabra secreta y presiona Enter" autofocus />
 
   <script type="module" src="/index.js"></script>
