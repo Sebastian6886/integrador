@@ -1,79 +1,34 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Cotización del Dólar Blue</title>
-  <style>
-    body {
-      background-color: #121212;
-      color: #00ff00;
-      font-family: monospace;
-      padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
 
-    h1 {
-      color: #00ff00;
-      text-align: center;
-      margin-bottom: 20px;
-    }
+import {Terminal} from '@es-js/terminal';
+import {obtenerJson} from 'https://desarrollo-aplicaciones.vercel.app/2024/code/obtener-json.js';
+import {validarSecreto} from 'https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.js';
 
-    .input-container {
-      margin-bottom: 15px;
+async function inicio() {
+    Terminal.escribir('Hola! Ingresa la palabra secreta:');
+    
+    var secreto = await Terminal.leer();
+    
+    var dni = '34877662';
+    
+    if (await validarSecreto(dni, secreto)) {
+        await mostrarCotizacion();
+    } else {
+        Terminal.escribir('Palabra secreta inválida');
     }
+    
+    Terminal.escribir('Presiona ENTER para volver a ingresar');
+    
+    await Terminal.leerEnter();
+    
+    Terminal.limpiar();
+    
+    inicio();
+}
 
-    #input {
-      background: #121212;
-      color: #00ff00;
-      border: 1px solid #00ff00;
-      padding: 10px;
-      width: 100%;
-      font-family: monospace;
-      font-size: 1em;
-      box-sizing: border-box;
-    }
+async function mostrarCotizacion() {
+    const dolarBlue = await obtenerJson('https://dolarapi.com/v1/dolares/blue');
+    
+    Terminal.escribir(dolarBlue);
+}
 
-    #terminal {
-      background: black;
-      padding: 15px;
-      border-radius: 8px;
-      white-space: pre-wrap;
-      min-height: 200px;
-      border: 1px solid #333;
-      margin-top: 10px;
-    }
-
-    .cargando {
-      color: #ffff00;
-      font-style: italic;
-    }
-
-    .error {
-      color: #ff5555;
-    }
-
-    .exito {
-      color: #55ff55;
-    }
-
-    .instrucciones {
-      color: #aaaaaa;
-      margin-bottom: 10px;
-      font-size: 0.9em;
-    }
-  </style>
-</head>
-<body>
-  <h1>💵 Dólar Blue App</h1>
-  
-  <div class="input-container">
-    <div class="instrucciones">Ingrese su palabra secreta y presione Enter:</div>
-    <input type="password" id="input" placeholder="Escriba aquí su palabra secreta..." autofocus />
-  </div>
-  
-  <div id="terminal"><span class="cargando">Terminal lista. Esperando validación...</span></div>
-
-  <script type="module" src="/index.js"></script>
-</body>
-</html>
+inicio();
