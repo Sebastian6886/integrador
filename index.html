@@ -1,26 +1,94 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
-
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>EsJS - JavaScript con sintaxis Español</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
-
-        <style>
-            body {
-                font-family: 'Ubuntu Mono', sans-serif;
-                font-size: 1.2rem;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consola Dólar Blue</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Ubuntu Mono', monospace;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+        }
+        es-terminal {
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+    <script type="module">
+        import { Terminal } from 'https://cdn.jsdelivr.net/npm/@es-js/terminal@latest/dist/es-terminal.min.js';
+        
+        // Configuración
+        const DNI = '34877662';
+        const SECRETO_VALIDO = 'tu-clave-real'; // REEMPLAZA CON TU CLAVE
+        
+        // Registra el componente terminal
+        customElements.define('es-terminal', Terminal);
+        
+        // Espera a que el terminal esté listo
+        document.addEventListener('DOMContentLoaded', async () => {
+            const terminal = document.querySelector('es-terminal');
+            
+            // Función para mostrar cotización
+            async function mostrarCotizacion() {
+                try {
+                    const response = await fetch('https://dolarapi.com/v1/dolares/blue');
+                    const dolarBlue = await response.json();
+                    
+                    terminal.escribir('\n=== COTIZACIÓN DÓLAR BLUE ===');
+                    terminal.escribir(`Compra: $${dolarBlue.compra}`);
+                    terminal.escribir(`Venta: $${dolarBlue.venta}`);
+                    terminal.escribir(`Promedio: $${((dolarBlue.compra + dolarBlue.venta) / 2).toFixed(2)}`);
+                    terminal.escribir(`Actualizado: ${new Date(dolarBlue.fechaActualizacion).toLocaleString()}`);
+                } catch (error) {
+                    terminal.escribir('\nError al obtener cotización:');
+                    terminal.escribir(error.message);
+                }
             }
-        </style>
-      <script type="module" crossorigin src="/assets/index-DeOwbu3Z.js"></script>
-    </head>
-
-    <body style="margin: 0; padding: 0; height: 100vh; width: 100vw;">
-        <es-terminal tema="oscuro"></es-terminal>
-    </body>
-
+            
+            // Función principal
+            async function inicio() {
+                terminal.escribir('Hola! Ingresa la palabra secreta:');
+                
+                const secreto = await terminal.leer();
+                
+                try {
+                    // Importación dinámica del módulo
+                    const { validarSecreto } = await import('https://desarrollo-aplicaciones.vercel.app/2024/code/validar-secreto.js');
+                    
+                    if (await validarSecreto(DNI, secreto)) {
+                        await mostrarCotizacion();
+                    } else {
+                        terminal.escribir('Palabra secreta inválida');
+                    }
+                } catch (error) {
+                    // Fallback si falla la importación
+                    if (secreto === SECRETO_VALIDO) {
+                        await mostrarCotizacion();
+                    } else {
+                        terminal.escribir('Palabra secreta inválida');
+                    }
+                }
+                
+                terminal.escribir('\nPresiona ENTER para volver a ingresar');
+                await terminal.leerEnter();
+                terminal.limpiar();
+                inicio();
+            }
+            
+            // Iniciar la aplicación
+            inicio();
+        });
+    </script>
+</head>
+<body>
+    <es-terminal tema="oscuro"></es-terminal>
+</body>
 </html>
