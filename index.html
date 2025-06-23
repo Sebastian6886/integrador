@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cotización del Dólar Blue</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #00ff00;
+      font-family: monospace;
+      padding: 2em;
+    }
 
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>EsJS - JavaScript con sintaxis Español</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+    #terminal {
+      background: black;
+      padding: 1em;
+      border-radius: 8px;
+      white-space: pre-wrap;
+    }
 
-        <style>
-            body {
-                font-family: 'Ubuntu Mono', sans-serif;
-                font-size: 1.2rem;
-            }
-        </style>
-      <script type="module" crossorigin src="/assets/index-DeOwbu3Z.js"></script>
-    </head>
+    input, button {
+      margin-top: 1em;
+      font-family: monospace;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>💵 Dólar Blue App</h1>
+  <pre id="terminal">Cargando terminal virtual...\n</pre>
+  <input type="text" id="input" placeholder="Ingresá la palabra secreta" />
+  <button onclick="procesarEntrada()">Enviar</button>
 
-    <body style="margin: 0; padding: 0; height: 100vh; width: 100vw;">
-        <es-terminal tema="oscuro"></es-terminal>
-    </body>
-
+  <script type="module" src="index.js"></script>
+</body>
 </html>
-
